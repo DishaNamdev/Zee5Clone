@@ -1,0 +1,103 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.header-container{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    background-color: black;
+    flex-direction: row;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.header-left{
+   flex: 1.5;
+   display: flex;
+   justify-self: center;
+   align-items: center;
+   /* background-color: red; */
+}
+
+.header-left > h3{
+    color: white;
+    font-weight: 600;
+    padding: 20px;
+}
+
+.header-middle{
+    flex: 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: ; */
+}
+
+.header-items{
+    display: flex;
+    list-style-type:none;
+    justify-content: space-evenly;
+    align-items: center;
+    transition: 0.3 all;
+}
+
+.item{
+    text-decoration: none;
+    padding: 25px;
+    color: white;
+}
+
+.item:hover{
+    /* transition: 1.1 all;; */
+    text-decoration: underline;
+}
+
+.searchbar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;    
+    justify-content: center;
+}
+
+.searchbar > form{
+    display: flex;
+    flex-direction: row;
+    align-items: center;    
+    justify-content: center;
+}
+
+.search-input{
+    height: 25px;
+    border: none;
+    padding: 5px;
+    border-radius: 2px;
+    background-color: white;
+}
+
+.search-input:focus{
+    outline: none;
+}
+
+.searchIcon{
+    color: white;
+    height: 25px;
+    width: 25px;
+    margin-left: 3px;
+}
+
+.header-right{
+    flex: 1.5;
+    /* background-color: green; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-right > img{
+    height: 30px;
+    width: 30px;
+}
+
+
+
