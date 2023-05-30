@@ -4,58 +4,97 @@ padding: 0;
 box-sizing: border-box;
 }
 
-.login-container{
-    height: 100vh;
+.container{
     display: flex;
+    height: calc(100vh-70px);
     align-items: center;
     justify-content: center;
 }
 
-.topbar{
-    height: 72px;
-    width: auto;
-    background-color: black;
-    color: white;
+.login-container{
+    border-radius: 10px;
+    width: 500px;
+    height: 500px;
+    background-color: rgb(240, 235, 235);
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    /* justify-content: center; */
+    background-image: linear-gradient(to bottom right,rgba(160, 62, 241, 0.97), rgba(32, 146, 234, 0.712));
+}
+
+.form-control{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.username-div{
+    /* margin-top: 30px; */
+    width: 80%;
+    height: 50px;
+}
+
+.password-div{
+    height: 50px;
+    width: 80%;
+    margin-top: 50px;
+}
+
+
+.username-lbl,.password-lbl{
+    color: white;
+    font-weight: 400;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+.username-in,.password-in{
+    border-radius: 5px;
+    height: 40px;
+    border: none;
+    outline: none;
+    padding: 5px;
+}
+
+.username-in:hover,.password-in:hover{
+  outline: none;
+  background-color:ghostwhite;
+  color: black;
+}
+
+.submit-btn-login{
+    height: 40px;
+    width: 80%;
+    border-radius: 10px;
+    margin-top: 60px;
+    border:none;
+    background-color:blueviolet;
+    padding: 10px;
+    color: yellow;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.otheroptions{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    height: fit-content;
+    margin-top: 10px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-
-.login-content{
-    display: flex;
-    justify-content: center;
-    width: 50%;
-    background-color: rgb(236, 243, 240);
-    border-radius: 2%;
-    box-sizing: border-box;
-    box-shadow: 2px 2px 2px rgb(240, 235, 235);
-    height: 70%;
-    align-items: center;
+.forgot-password, .signup{
+    width: fit-content;
+    height: fit-content;
+    padding: 5px;
+    color: black;
+    font-size: 13px;
 }
 
-.topbar > h3{
-    margin-left: 10px;
-}
-
-.input-fields{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-}
-
-.input-fields > input{
-    width: 200px;
-    height: 30px;
-    border: none;
-    background-color: #f3eeee;
-}
-
-.submit-btn{
-    padding: 10px;
-    /* color: white; */
-    border: none;
-    border-radius: 10%;
+.signup{
+    font-size: 16px;
+    color: yellow;
     font-weight: bold;
-    background-color: #fff;
+    text-decoration: underline;
 }
+

@@ -2,13 +2,12 @@ import React from "react";
 import "./header.css";
 import SearchIcon from "@mui/icons-material/Search";
 import userimage from "../../assets/userimg.png";
-
+import logo from "../../assets/header-logo.jpeg";
 function Header() {
   return (
     <div className="header-container">
       <div className="header-left">
-        {" "}
-        <h3> Zee5</h3>
+        <img src={logo} alt="" className="headerLogo" />
       </div>
       <div className="header-middle">
         <ul className="header-items">
@@ -22,11 +21,11 @@ function Header() {
         </ul>
         <div className="searchbar">
           <form action="submit">
-                <input type="text" className="search-input" placeholder="Search" />
-                <span className="submit-btn">
-                  <SearchIcon className="searchIcon" />{" "}
-                </span>
-                </form>
+            <input type="text" className="search-input" placeholder="Search" />
+            <span className="submit-btn">
+              <SearchIcon className="searchIcon" />
+            </span>
+          </form>
         </div>
       </div>
       <div className="header-right">

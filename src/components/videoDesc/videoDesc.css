@@ -1,0 +1,25 @@
+.videoDesc-container{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.589);
+    display: flex;
+    flex-direction: row;
+}
+
+.videoDesc-title{
+    color: white;
+    font-size: 18px;
+}
+
+.videoDesc-channelName{
+    color: gray;
+}
+
+.videoDesc-channelName > span{
+    font-weight: bold;
+}
+
+.videoDesc-description{
+    font-size: 15px;
+    color: white;
+}

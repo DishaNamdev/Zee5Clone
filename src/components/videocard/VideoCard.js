@@ -1,23 +1,25 @@
 import React from "react";
 import "./videocard.css";
-import image from "../../assets/image1.jpg";
+import { Link } from "react-router-dom";
 
-function VideoCard({data}) {
-  // const { data } = props;
+function VideoCard({ data }) {
+ 
   console.log("this is my data********8", data);
 
   return (
-    <div className="videocard-container">
-      {/* <div className="videocard-imgsec"> */}
-      <img src={image} alt="" />
-      {/* </div> */}
-      <p className="videocard-desc">
-        {data?.snippet.title}
-        {/* Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo
-        voluptatem ab rem quod est. Inventore? */}
-        
-      </p>
+    <Link className="videocard-link" to={`/video/${data.id.videoId}`}>
+      <div className="videocard-container">
+      <img src={data?.snippet.thumbnails.high.url} alt="" />
+
+      <div className="videocard-desc">
+        <p className="vidoecard-desc-channelName">
+          {data.snippet.channelTitle}
+        </p>
+        <p>{data.snippet.title}</p>
+      </div>
     </div>
+    </Link>
+    
   );
 }
 
