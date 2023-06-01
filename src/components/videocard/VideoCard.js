@@ -3,8 +3,6 @@ import "./videocard.css";
 import { Link } from "react-router-dom";
 
 function VideoCard({ data }) {
- 
-  console.log("this is my data********8", data);
 
   return (
     <Link className="videocard-link" to={`/video/${data.id.videoId}`}>

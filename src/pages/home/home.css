@@ -18,7 +18,7 @@
 
 .slick-dots{
     position: absolute;
-    bottom: 210px;
+    bottom: 100px;
     display: block;
     width: 100%;
     background-color:white;
@@ -37,9 +37,10 @@
 
 .slick-prev, .slick-next {
     position: absolute;
-    top: 50%;
-   
-  }
+    top: 35%;
+    z-index: 1000;
+}
+
 .slick-prev{
     left: 5%;
 }
@@ -48,8 +49,12 @@
     right: 5%;
 }
 
+.slick-prev:before, .slick-next:before{
+  font-size: 35px;
+}
+
 .heading{
-  margin-top: -150px;
+  margin-top: -100px;
   padding-left: 35px;
   font-weight: 600;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;

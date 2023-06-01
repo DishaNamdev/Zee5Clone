@@ -8,8 +8,9 @@ export const fetchAsyncVideos = createAsyncThunk(
 
   async (term) => {
     // const term = "java"; // ise bad me hatana h
+    console.log("checking fetchasync", term);
     const response = await youtubeApi
-      .get(`?part=snippet&maxResults=20&key=${APIKey}&type=video&query=${term}`)
+      .get(`?part=snippet&maxResults=20&key=${APIKey}&type=video&q=${term}`)
       .catch((err) => {
         console.log("Err: ", err);
       });
@@ -60,8 +61,6 @@ const videoSlice = createSlice({
     [fetchAsyncVideos.rejected]: () => {
       console.log("Failed....");
     },
-
-
 
     [fetchAsyncVideoDetails.fulfilled]: (state,{payload})=>{
       console.log("Details payload", payload);

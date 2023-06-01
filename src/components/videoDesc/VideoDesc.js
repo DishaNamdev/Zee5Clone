@@ -7,81 +7,118 @@ import {
 } from "../../features/movies/videoSlice";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchAsyncVideoDetails } from "../../features/movies/videoSlice";
 import { getVideoDetails } from "../../features/movies/videoSlice";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import ReactPlayer from "react-player";
+import { useHistory } from "react-router-dom";
+import CloseIcon from "@mui/icons-material/Close";
 
 function VideoDesc() {
   const videoID = useParams();
   const dispatch = useDispatch();
 
-  const clickedVideo = useSelector(getVideoDetails);
   const allVideos = useSelector(getAllVideos);
 
+
   const [myvideo, setMyVideo] = useState({});
-  const [singleVideo, setSingleVideo] = useState({});
+  const [videoPlayer, setVideoPlayer] = useState(false);
+  const [videoUrl, setVideoUrl] = useState("");
+
+  let resultant = {};
+
+  // console.log("data of allVideo", allVideos);
 
   useEffect(() => {
     console.log("Inside useEffect");
-
     dispatch(fetchAsyncVideos());
-    dispatch(fetchAsyncVideoDetails(videoID));
-
-    // just checking
-    // for (let i = 0; i < allVideos.length; i++) {
-    //   if (allVideos[i].id.videoId === videoID) {
-    //     resultant = allVideos[i];
-    //     setMyVideo(resultant);
-    //     break;
-    //   }
-    // }
     setMyVideo(allVideos);
-    setSingleVideo(clickedVideo);
-  }, [clickedVideo]);
 
-  console.log("My video details", clickedVideo); // why undefined
 
-  console.log("My data from videodesc", myvideo); // why undefined
+    for (let i = 0; allVideos && i < allVideos.length; i++) {
+      if (allVideos[i].id.videoId === videoID.videoId) {
+        resultant = allVideos[i];
+        setMyVideo(resultant);
+        break;
+      }
+    }
 
-  const resultant = "";
+    setMyVideo(resultant);
+  }, []);
+
+  // console.log("My data from videodesc", myvideo);
 
   const youtubevideoHandler = () => {
-    window.location.replace(`https://www.youtube.com/watch?v=${videoID}`);
+    setVideoPlayer(true);
+    setVideoUrl(`https://www.youtube.com/watch?v=${videoID.videoId}`);
+  };
+
+  const closeVideoHandler = () => {
+    setVideoPlayer(false);
   };
 
   return (
     <>
-      {
-          clickedVideo &&     
-          <div className="videoDesc-container">
-          <div className="videoDesc-left">
-            <div className="videoDesc-title">{clickedVideo.snippet.title}</div>
-            <div className="videoDesc-channelName">
-              Channel: <span> {clickedVideo.snippet.channelTitle} </span>
-            </div>
-            <div className="videoDesc-description">
-              {clickedVideo.snippet.description}
+      {Object.keys(myvideo).length === 0 ? (
+        <div className="loading-text">Loading Content....</div>
+      ) : (
+        myvideo && (
+          <div className="desc-container">
+            <div className="videoDesc-title">{myvideo.snippet.title}</div>
+            <div className="videoDesc-container">
+              <div className="videoDesc-left">
+                <div className="videoDesc-channelName">
+                  Channel: <span> {myvideo.snippet.channelTitle} </span>
+                </div>
+                <div className="videoDesc-description">
+                  Descritpion:{" "}
+                  {myvideo.snippet.description.length === 0 ? (
+                    <p>
+                       <span>No Description</span>
+                    </p>
+                  ) : (
+                    <span>{myvideo.snippet.description}</span>
+                  )}
+                </div>
+                {videoPlayer && (
+              <>
+                <div className="videoPlayer-container">
+                  <div className="videoholder">
+                    <div className="closebtn-div">
+                      <CloseIcon
+                        className="videoPlayer-closeicon"
+                        onClick={closeVideoHandler}
+                      />
+                    </div>
+
+                    <ReactPlayer id="video" url={videoUrl} controls />
+                  </div>
+                </div>
+              </>
+            )}
+              </div>
+              <div className="videoDesc-right">
+                <div></div>
+                <div className="imageAndBtn-container">
+                <img
+                  src={myvideo.snippet.thumbnails.high.url}
+                  alt="poster"
+                  className="videoDesc-image"
+                />
+                       <button
+                  className="play-video-btn"
+                  onClick={youtubevideoHandler}
+                >
+                  Play <YouTubeIcon className="youtube-icon" />
+                </button>
+                </div>
+                
+              </div>
             </div>
           </div>
-          <div className="videoDesc-right">
-            <img
-              src={clickedVideo.snippet.thumbnails.medium.url}
-              alt="poster"
-              className="videoDesc-image"
-            />
-          </div>
-          <button className="videoDesc-playBtn" onClick={youtubevideoHandler}>PLAY</button>
-        </div>
-      }
+        )
+      )}
     </>
-
-
   );
 }
 
 export default VideoDesc;
-
-/**
- * I have two options now
- * 1) first is to get all the videos and then apply the for loop and find that particular video
- * 2) directly get the data for that particular video using api call
- */

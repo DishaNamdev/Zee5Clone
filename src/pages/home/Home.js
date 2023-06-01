@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import VideoPreview from "../../components/videosPreview/VideoPreview";
 import SliderView from "../../components/sliderview/SliderView";
 import Header from "../../components/header/Header";
@@ -13,36 +13,15 @@ import {
   getAllVideos,
 } from "../../features/movies/videoSlice";
 
-// const data = [
-//   {
-//     id: 1,
-//     label: "lorem ipsum 2",
-//     imgPath: "https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg",
-//   },
-//   {
-//     id: 2,
-//     label: "Disha is Great",
-//     imgPath:
-//       "https://images.pexels.com/photos/669996/pexels-photo-669996.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-//   },
-//   {
-//     id: 3,
-//     label: "I am Great",
-//     imgPath:
-//       "https://images.pexels.com/photos/313782/pexels-photo-313782.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-//   },
-// ];
-
-function Home() {
+function Home({ searchtext }) {
+  console.log("Inside home component search value", searchtext);
   const videosArr = useSelector(getAllVideos);
-  console.log("this is video arrray from Home.js", videosArr);
-  const videoText = "codeWithHarry";
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchAsyncVideos(videoText));
-  }, [dispatch]);
+    dispatch(fetchAsyncVideos(searchtext));
+  }, [searchtext]);
 
   /***********************************************************/
   const Settings = {
@@ -59,13 +38,8 @@ function Home() {
   };
   return (
     <div>
-      {/* <Slider {...Settings}>
-        {data.map((item) => {
-          return <SliderView key={item.id} props={item} />;
-        })}
-      </Slider> */}
-      {Object.keys(videosArr).length === 0 ? (
-        <div>Loading.....</div>
+      {Object.keys(videosArr || {}).length === 0 ? (
+        <div className="loading-text">Loading Content....</div>
       ) : (
         <>
           <Slider {...Settings}>
